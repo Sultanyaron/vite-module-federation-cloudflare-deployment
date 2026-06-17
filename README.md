@@ -142,5 +142,4 @@ npx wrangler versions upload --env qa --preview-alias pr-123
   are assets-only Workers, so their own `public/_headers` apply.
 - Shared singletons (`react`, `react-dom`) are declared in every `vite.config.ts` so
   there's one React instance across the federation boundary.
-- `dts: false` on the federation plugin disables remote type generation (avoids a
-  noisy build-time DTS step).
+- `dts: false` on the federation plugin disables remote type generation (reduce overhead for the example).
