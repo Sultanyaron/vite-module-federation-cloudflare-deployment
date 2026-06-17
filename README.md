@@ -1,6 +1,6 @@
 # Vite Module Federation on Cloudflare Workers
 
-<img width="797" height="675" alt="image" src="https://github.com/user-attachments/assets/101e1b02-3d97-4088-b0ef-12fa4f03aac6" />
+<img width="797" height="675" alt="image" src="./docs/app-preview.png" />
 
 A minimal, production-shaped example of a **micro-frontend monorepo** using
 **Module Federation** (`@module-federation/vite`) on **Cloudflare Workers**.
@@ -72,7 +72,7 @@ bindings target that env's remotes).
 VITE_APP_VERSION=1.0.0 npm run deploy:qa
 ```
 
-<img width="1299" height="629" alt="Screenshot 2026-06-17 at 16 13 47" src="https://github.com/user-attachments/assets/31cf1680-8a78-4923-9145-339e23d2bc18" />
+<img width="1299" height="629" alt="Screenshot 2026-06-17 at 16 13 47" src="./docs/cloudflare-workers-preview.png" />
 
 ### Rollback
 
