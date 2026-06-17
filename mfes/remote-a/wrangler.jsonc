@@ -1,0 +1,19 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "cloudflare-react-remote-a",
+	"compatibility_date": "2026-06-16",
+	"assets": {
+		"directory": "./dist",
+		// MFE asset origin must 404 on missing files, never SPA-fallback to index.html.
+		"not_found_handling": "none"
+	},
+	"observability": {
+		"enabled": true
+	},
+	"workers_dev": true,
+	"preview_urls": true,
+	"env": {
+		"qa": {},
+		"prod": {}
+	}
+}

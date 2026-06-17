@@ -1,0 +1,31 @@
+{
+  "name": "@cf-mfe/host",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 5173 --strictPort",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview --port 5173 --strictPort",
+    "//deploy:env": "Host uses @cloudflare/vite-plugin, which selects the wrangler env at BUILD time via CLOUDFLARE_ENV (it strips env blocks from its generated config), so `wrangler deploy --env` does NOT work here. VITE_APP_VERSION sets the wrangler --tag AND is baked into the build (import.meta.env.VITE_APP_VERSION).",
+    "deploy:qa": "CLOUDFLARE_ENV=qa npm run build && wrangler deploy --tag \"${VITE_APP_VERSION:?set VITE_APP_VERSION (e.g. VITE_APP_VERSION=v1.2.3)}\"",
+    "deploy:prod": "CLOUDFLARE_ENV=prod npm run build && wrangler deploy --tag \"${VITE_APP_VERSION:?set VITE_APP_VERSION (e.g. VITE_APP_VERSION=v1.2.3)}\"",
+    "lint": "eslint .",
+    "cf-typegen": "wrangler types"
+  },
+  "dependencies": {
+    "@module-federation/runtime": "^2.5.1",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6"
+  },
+  "devDependencies": {
+    "@cloudflare/vite-plugin": "^1.40.2",
+    "@module-federation/vite": "^1.16.8",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "typescript": "~6.0.2",
+    "vite": "^8.0.12",
+    "wrangler": "^4.100.0"
+  }
+}

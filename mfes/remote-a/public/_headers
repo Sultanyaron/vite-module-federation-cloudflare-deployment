@@ -1,0 +1,10 @@
+# Content-hashed federation chunks — cache forever.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Stable filenames, content changes every deploy — must revalidate.
+# (Both also match Cloudflare's default of max-age=0, must-revalidate; explicit here.)
+/remoteEntry.js
+  Cache-Control: no-cache
+/index.html
+  Cache-Control: no-cache

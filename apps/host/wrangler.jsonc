@@ -1,0 +1,74 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "cloudflare-react",
+	"main": "worker/index.ts",
+	"compatibility_date": "2026-06-16",
+	"assets": {
+		"binding": "ASSETS",
+		"not_found_handling": "single-page-application",
+		"run_worker_first": [
+			"/remote-a/*",
+			"/remote-b/*",
+			"/api/*"
+		]
+	},
+	"observability": {
+		"enabled": true
+	},
+	"upload_source_maps": true,
+	"compatibility_flags": [
+		"nodejs_compat"
+	],
+	"workers_dev": true,
+	"preview_urls": true,
+	"services": [
+		{
+			"binding": "REMOTE_A",
+			"service": "cloudflare-react-remote-a"
+		},
+		{
+			"binding": "REMOTE_B",
+			"service": "cloudflare-react-remote-b"
+		}
+	],
+	// Host uses @cloudflare/vite-plugin, which selects the env at BUILD time via
+	// CLOUDFLARE_ENV (not `wrangler deploy --env`). See package.json deploy:* scripts.
+	"env": {
+		"qa": {
+			"routes": [
+				{
+					"pattern": "app-qa.your.domain.io",
+					"custom_domain": true
+				}
+			],
+			"services": [
+				{
+					"binding": "REMOTE_A",
+					"service": "cloudflare-react-remote-a-qa"
+				},
+				{
+					"binding": "REMOTE_B",
+					"service": "cloudflare-react-remote-b-qa"
+				}
+			]
+		},
+		"prod": {
+			"routes": [
+				{
+					"pattern": "app.your.domain.io",
+					"custom_domain": true
+				}
+			],
+			"services": [
+				{
+					"binding": "REMOTE_A",
+					"service": "cloudflare-react-remote-a-prod"
+				},
+				{
+					"binding": "REMOTE_B",
+					"service": "cloudflare-react-remote-b-prod"
+				}
+			]
+		}
+	}
+}

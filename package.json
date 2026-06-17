@@ -1,0 +1,49 @@
+{
+  "name": "cloudflare-react",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "mfes/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -k -n remoteA,remoteB,host -c magenta,green,cyan \"npm:dev:remote-a\" \"npm:dev:remote-b\" \"npm:dev:host\"",
+    "dev:host": "npm run dev --workspace apps/host",
+    "dev:remote-a": "npm run dev --workspace mfes/remote-a",
+    "dev:remote-b": "npm run dev --workspace mfes/remote-b",
+    "build": "npm run build --workspaces --if-present",
+    "build:host": "npm run build --workspace apps/host",
+    "build:remote-a": "npm run build --workspace mfes/remote-a",
+    "build:remote-b": "npm run build --workspace mfes/remote-b",
+    "preview": "concurrently -k -n remoteA,remoteB,host -c magenta,green,cyan \"npm:preview:remote-a\" \"npm:preview:remote-b\" \"npm:preview:host\"",
+    "preview:host": "npm run preview --workspace apps/host",
+    "preview:remote-a": "npm run preview --workspace mfes/remote-a",
+    "preview:remote-b": "npm run preview --workspace mfes/remote-b",
+    "deploy:qa": "npm run deploy:qa --workspace mfes/remote-a && npm run deploy:qa --workspace mfes/remote-b && npm run deploy:qa --workspace apps/host",
+    "deploy:prod": "npm run deploy:prod --workspace mfes/remote-a && npm run deploy:prod --workspace mfes/remote-b && npm run deploy:prod --workspace apps/host",
+    "lint": "npm run lint --workspaces --if-present"
+  },
+  "dependencies": {
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6"
+  },
+  "devDependencies": {
+    "@cloudflare/vite-plugin": "^1.40.2",
+    "@eslint/js": "^10.0.1",
+    "@module-federation/vite": "^1.16.8",
+    "@types/node": "^24.13.2",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "concurrently": "^9.1.0",
+    "eslint": "^10.3.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "globals": "^17.6.0",
+    "typescript": "~6.0.2",
+    "typescript-eslint": "^8.59.2",
+    "vite": "^8.0.12",
+    "wrangler": "^4.100.0"
+  }
+}

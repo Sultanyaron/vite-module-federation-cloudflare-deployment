@@ -1,0 +1,27 @@
+.remote-widget {
+  font-family: system-ui, sans-serif;
+}
+
+.remote-widget h2 {
+  margin-top: 0;
+  color: #6200ee;
+}
+
+.remote-widget button {
+  font-size: 16px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid #b388ff;
+  background: #f3e5ff;
+  cursor: pointer;
+}
+
+/* Distinguish remote B with a teal accent. */
+.remote-widget-b h2 {
+  color: #00897b;
+}
+
+.remote-widget-b button {
+  border-color: #4db6ac;
+  background: #e0f2f1;
+}
